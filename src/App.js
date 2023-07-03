@@ -1,4 +1,4 @@
-import { Header, Main } from "./components";
+import { Header, Main, TextField } from "./components";
 import "./reset.css";
 
 function App() {
@@ -6,6 +6,7 @@ function App() {
     <div className="App">
       <Header />
       <Main />
+      <TextField />
     </div>
   );
 }
