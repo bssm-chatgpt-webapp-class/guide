@@ -1,8 +1,9 @@
 import { HambugIcon, PlusIcon } from "../../icons";
+import "./index.css";
 
 const Header = () => {
   return (
-    <div>
+    <div className="header">
       <HambugIcon />
       <div>New chat</div>
       <PlusIcon />
