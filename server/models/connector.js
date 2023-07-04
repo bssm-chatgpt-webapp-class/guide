@@ -1,5 +1,5 @@
 const mysql = require("mysql2/promise");
-const env = request("../../config/env");
+const env = require("../config/env");
 
 let connection;
 const connect = async () => {
