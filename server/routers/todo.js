@@ -10,22 +10,29 @@ router.get("/", async function (req, res) {
   res.json(results);
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const data = req.body;
-  database.push({ id: currentId++, text: data.text });
+  await getConnection().execute(
+    `INSERT INTO todo(todo, completed) VALUES(?, ?)`,
+    [data.todo, 0]
+  );
   return res.json("success");
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", async (req, res) => {
   const id = Number(req.params.id);
-  const updateIndex = database.findIndex((data) => data.id === id);
-  database[updateIndex].text = req.body.text;
+  const { todo, completed } = req.body;
+  console.log(id, todo, completed);
+  await getConnection().execute(
+    `UPDATE todo SET todo=?, completed=? WHERE id=?`,
+    [todo, completed, id]
+  );
   return res.json("success");
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   const id = req.params.id;
-  database = database.filter((data) => data.id !== Number(id));
+  await getConnection().execute(`DELETE FROM todo WHERE id=?`, [id]);
   return res.json("success");
 });
 
