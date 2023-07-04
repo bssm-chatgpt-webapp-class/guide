@@ -12,7 +12,6 @@ router.post("/signin", async function (req, res) {
     [email]
   );
 
-  console.log("result s: ", results);
   if (results.length === 0) {
     return res.json("no user");
   }
