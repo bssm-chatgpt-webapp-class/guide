@@ -14,7 +14,7 @@ router.post("/signin", async function (req, res) {
     return res.json("no user");
   }
 
-  const token = jwt.sign({ id: results[0].id, email }, "secret");
+  const token = jwt.sign({ id: results[0].id, email }, process.env.JWT_SECRET);
   res.json(token);
 });
 
